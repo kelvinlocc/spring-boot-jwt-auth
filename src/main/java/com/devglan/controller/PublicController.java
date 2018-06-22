@@ -22,7 +22,7 @@ public class PublicController {
         System.out.print("requesting /signup ");
         System.out.print(" User object" +user.toString());
 
-        return userService.save(user);
+        return userService.add(user);
     }
 
     /**

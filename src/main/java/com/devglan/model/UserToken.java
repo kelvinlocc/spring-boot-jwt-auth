@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 
 @Entity
-public class Token {
+public class UserToken {
 
     @Id
     private long userId;
@@ -15,6 +15,17 @@ public class Token {
 
     @Column
     private String timeStamp;
+
+
+
+
+
+
+
+
+
+
+
 
     public String getTimeStamp() {
         return timeStamp;

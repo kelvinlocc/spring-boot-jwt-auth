@@ -1,6 +1,5 @@
 package com.devglan.service.impl;
 
-import com.devglan.controller.exception.ErrorDetails;
 import com.devglan.controller.exception.runtimeException.ServerInternalError;
 import com.devglan.controller.exception.runtimeException.UserInputError;
 import com.devglan.dao.UserDao;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 
@@ -53,7 +51,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public User findOne(String username) {
+    public User findByUsername(String username) {
         return userDao.findByUsername(username);
     }
 
@@ -66,7 +64,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
 
     @Override
-    public User save(User user) {
+    public User add(User user) {
         if (isDuplicated(user)) {
             throw new ServerInternalError("username is duplicated" + user.getUsername());
         }
@@ -84,12 +82,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         if (user.getUsername().isEmpty()) {
             throw new UserInputError("invalid username");
         }
-        User userFromServer = findOne(user.getUsername());
+
+        User userFromServer = findByUsername(user.getUsername());
         if (userFromServer == null) {
             throw new UserInputError("invalid username");
         }
-
-
         user.setId(userFromServer.getId());
         userFromServer.setUsername(user.getUsername());
         userFromServer.setPassword(bcryptEncoder.encode(user.getPassword()));
@@ -100,6 +97,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     private boolean isDuplicated(User user) {
-        return findOne(user.getUsername()) != null;
+        return findByUsername(user.getUsername()) != null;
     }
 }

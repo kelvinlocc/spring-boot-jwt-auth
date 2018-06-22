@@ -1,12 +1,10 @@
 package com.devglan.controller;
 
 import com.devglan.config.JwtTokenUtil;
-import com.devglan.controller.exception.runtimeException.UserInputError;
 import com.devglan.model.AuthToken;
 import com.devglan.model.LoginUser;
 import com.devglan.model.User;
 import com.devglan.service.UserService;
-import com.devglan.service.validation.ValidateUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -49,7 +47,7 @@ public class AuthenticationController {
                 )
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        final User user = userService.findOne(loginUser.getUsername());
+        final User user = userService.findByUsername(loginUser.getUsername());
         final String token = jwtTokenUtil.generateToken(user);
         return ResponseEntity.ok(new AuthToken(token));
     }
