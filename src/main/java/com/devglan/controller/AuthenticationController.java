@@ -5,6 +5,7 @@ import com.devglan.model.AuthToken;
 import com.devglan.model.LoginUser;
 import com.devglan.model.User;
 import com.devglan.service.UserService;
+import com.devglan.service.UserTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,15 +31,11 @@ public class AuthenticationController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserTokenService userTokenService;
+
     @RequestMapping(value = "/generate-token", method = RequestMethod.POST)
     public ResponseEntity<?> register(@RequestBody LoginUser loginUser) throws AuthenticationException {
-//        if (!ValidateUser.getInstance().isUsernameExist(loginUser)) {
-//            throw new UserInputError("invalid username");
-//        }
-//
-//        if (!ValidateUser.getInstance().isPasswordMatch(loginUser)) {
-//            throw new UserInputError("invalid password");
-//        }
 
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -48,8 +45,16 @@ public class AuthenticationController {
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final User user = userService.findByUsername(loginUser.getUsername());
+        updateUserToken(user.getId());
+
         final String token = jwtTokenUtil.generateToken(user);
         return ResponseEntity.ok(new AuthToken(token));
+    }
+
+    private void updateUserToken(Long userId) {
+        userTokenService.findById(userId);
+
+
     }
 
 }

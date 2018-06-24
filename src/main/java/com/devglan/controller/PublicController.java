@@ -25,6 +25,14 @@ public class PublicController {
         return userService.add(user);
     }
 
+    @RequestMapping(value="/logout", method = RequestMethod.POST)
+    public User logoutUser(@RequestBody User user){
+        System.out.print("requesting /logout "); 8473
+        System.out.print(" User object" +user.toString());
+
+        return userService.add(user);
+    }
+
     /**
      *      temp
      *  **/
