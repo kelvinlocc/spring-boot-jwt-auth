@@ -2,7 +2,10 @@ package com.devglan.controller;
 
 import com.devglan.controller.misc.PublicApiController;
 import com.devglan.model.User;
+import com.devglan.model.UserToken;
 import com.devglan.service.UserService;
+import com.devglan.service.UserTokenService;
+import com.devglan.untility.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +19,8 @@ public class PublicController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserTokenService userTokenService;
 
     @RequestMapping(value="/signup", method = RequestMethod.POST)
     public User saveUser(@RequestBody User user){
@@ -26,11 +31,14 @@ public class PublicController {
     }
 
     @RequestMapping(value="/logout", method = RequestMethod.POST)
-    public User logoutUser(@RequestBody User user){
-        System.out.print("requesting /logout "); 8473
+    public UserToken logoutUser(@RequestBody User user){
+        System.out.print("requesting /logout ");
         System.out.print(" User object" +user.toString());
+        UserToken tokenInstance = userTokenService.findById(user.getId());
+        tokenInstance.setTimeStamp(TimeUtil.getCurrentTimeStamp());
+        tokenInstance.setToken(null);
 
-        return userService.add(user);
+        return userTokenService.update(tokenInstance);
     }
 
     /**

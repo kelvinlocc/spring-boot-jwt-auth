@@ -4,6 +4,7 @@ import com.devglan.config.JwtTokenUtil;
 import com.devglan.model.AuthToken;
 import com.devglan.model.LoginUser;
 import com.devglan.model.User;
+import com.devglan.model.UserToken;
 import com.devglan.service.UserService;
 import com.devglan.service.UserTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,14 +46,22 @@ public class AuthenticationController {
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final User user = userService.findByUsername(loginUser.getUsername());
-        updateUserToken(user.getId());
 
         final String token = jwtTokenUtil.generateToken(user);
+        updateUserToken(user.getId(),token);
         return ResponseEntity.ok(new AuthToken(token));
     }
 
-    private void updateUserToken(Long userId) {
-        userTokenService.findById(userId);
+    private void updateUserToken(Long userId,String token) {
+        UserToken tokenInstance = userTokenService.findById(userId);
+        if (tokenInstance.getToken() == null) {
+            System.out.println("tokenInstance.getToken() == null");
+            tokenInstance.setToken(token);
+            userTokenService.update(tokenInstance);
+        }else {
+            System.out.println("tokenInstance.getToken() != null");
+        }
+
 
 
     }

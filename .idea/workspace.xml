@@ -15,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AuthenticationController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AuthenticationController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/devglan/controller/AuthenticationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="46" column="78" selection-start-line="46" selection-start-column="78" selection-end-line="46" selection-end-column="78" />
+            <state relative-caret-position="86">
+              <caret line="45" column="10" lean-forward="true" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -37,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PublicController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PublicController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/devglan/controller/PublicController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="29" column="53" selection-start-line="29" selection-start-column="53" selection-end-line="29" selection-end-column="53" />
+            <state relative-caret-position="474">
+              <caret line="38" column="37" lean-forward="true" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,8 +79,8 @@
       <file leaf-file-name="UserTokenController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/devglan/controller/UserTokenController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+            <state relative-caret-position="418">
+              <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -91,7 +91,7 @@
       <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/devglan/service/impl/UserServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1026">
+            <state relative-caret-position="684">
               <caret line="54" column="23" selection-start-line="54" selection-start-column="23" selection-end-line="54" selection-end-column="23" />
             </state>
           </provider>
@@ -208,8 +208,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/devglan/untility/TimeUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devglan/service/impl/TokenServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devglan/controller/UserTokenController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/devglan/controller/AuthenticationController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devglan/controller/PublicController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/devglan/controller/AuthenticationController.java" />
       </list>
     </option>
   </component>
@@ -222,9 +222,9 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="90" />
-    <option name="y" value="160" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="167" />
+    <option name="y" value="176" />
     <option name="width" value="1565" />
     <option name="height" value="990" />
   </component>
@@ -234,6 +234,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -357,7 +358,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -678,11 +678,12 @@
       <workItem from="1529489402636" duration="13092000" />
       <workItem from="1529593412562" duration="1543000" />
       <workItem from="1529667665287" duration="2331000" />
+      <workItem from="1529847110620" duration="1658000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27979000" />
+    <option name="totallyTimeSpent" value="29637000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -694,8 +695,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="71" y="-7" width="1984" height="1166" extended-state="6" />
-    <editor active="true" />
+    <frame x="134" y="141" width="1252" height="792" extended-state="0" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -709,51 +709,28 @@
       <window_info id="UI Designer" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4050445" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32937685" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32937685" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="8" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.25166193" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32953465" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.43740794" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22385786" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3546042" />
       <window_info anchor="right" id="Bean Validation" order="3" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22327965" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="Nl-Palette" order="2" />
-      <window_info anchor="bottom" id="Java Enterprise" order="8" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4050445" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.24963397" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info id="Web" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32937685" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32884902" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Properties" order="3" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="UI Designer" order="2" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24364723" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32937685" />
-      <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info id="Designer" order="2" />
+      <window_info id="Nl-Palette" order="2" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="Properties" order="3" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32884902" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -766,7 +743,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
-          <url />
+          <url>file://$PROJECT_DIR$/src/main/java/com/devglan/service/impl/UserServiceImpl.java</url>
           <line>66</line>
           <properties class="com.devglan.service.impl.UserServiceImpl">
             <option name="EMULATED" value="true" />
@@ -774,7 +751,7 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url />
+          <url>file://$PROJECT_DIR$/src/main/java/com/devglan/service/validation/ValidateUser.java</url>
           <line>47</line>
           <properties class="com.devglan.service.validation.ValidateUser">
             <option name="EMULATED" value="true" />
@@ -782,7 +759,7 @@
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url />
+          <url>file://$PROJECT_DIR$/src/main/java/com/devglan/config/JwtTokenUtil.java</url>
           <line>64</line>
           <properties class="com.devglan.config.JwtTokenUtil">
             <option name="EMULATED" value="true" />
@@ -790,19 +767,19 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url />
+          <url>file://$PROJECT_DIR$/src/main/java/com/devglan/config/JwtAuthenticationFilter.java</url>
           <line>50</line>
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url />
+          <url>file://$PROJECT_DIR$/src/main/java/com/devglan/config/JwtAuthenticationFilter.java</url>
           <line>36</line>
           <properties />
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url />
+          <url>file://$PROJECT_DIR$/src/main/java/com/devglan/service/validation/ValidateUser.java</url>
           <line>62</line>
           <properties />
           <option name="timeStamp" value="14" />
@@ -867,9 +844,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#299#300#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1031,7 +1005,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/devglan/service/impl/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1026">
+        <state relative-caret-position="684">
           <caret line="54" column="23" selection-start-line="54" selection-start-column="23" selection-end-line="54" selection-end-column="23" />
         </state>
       </provider>
@@ -1099,8 +1073,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/devglan/controller/UserTokenController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+        <state relative-caret-position="418">
+          <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1111,13 +1085,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="8" column="26" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/devglan/controller/AuthenticationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="46" column="78" selection-start-line="46" selection-start-column="78" selection-end-line="46" selection-end-column="78" />
         </state>
       </provider>
     </entry>
@@ -1134,11 +1101,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/devglan/controller/PublicController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" column="53" selection-start-line="29" selection-start-column="53" selection-end-line="29" selection-end-column="53" />
+        <state relative-caret-position="474">
+          <caret line="38" column="37" lean-forward="true" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/devglan/controller/AuthenticationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="45" column="10" lean-forward="true" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
         </state>
       </provider>
     </entry>
