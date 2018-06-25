@@ -1,0 +1,14 @@
+{
+  "productName": "productname",
+  "category": "category",
+  "color": "color",
+  "level": "level",
+  "description": "description",
+  "price": 100,
+  "amount": 25,
+  "createTimeStamp": "createTimeStamp",
+  "offloadTimeStamp": "offloadTimeStamp",
+  "isOnSale": true,
+  "imageLink": "imageLink",
+  "remark": "remark"
+}

@@ -6,7 +6,11 @@ import com.devglan.dao.UserDao;
 import com.devglan.model.User;
 import com.devglan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,6 +27,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Autowired
     private UserDao userDao;
+
+
 
     @Autowired
     private BCryptPasswordEncoder bcryptEncoder;
@@ -61,12 +67,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
 
-
-
     @Override
     public User add(User user) {
         if (isDuplicated(user)) {
-            throw new ServerInternalError("username is duplicated" + user.getUsername());
+            throw new ServerInternalError("username is duplicated " + user.getUsername());
         }
 
         User newUser = new User();
@@ -83,10 +87,12 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             throw new UserInputError("invalid username");
         }
 
+
         User userFromServer = findByUsername(user.getUsername());
         if (userFromServer == null) {
             throw new UserInputError("invalid username");
         }
+
         user.setId(userFromServer.getId());
         userFromServer.setUsername(user.getUsername());
         userFromServer.setPassword(bcryptEncoder.encode(user.getPassword()));

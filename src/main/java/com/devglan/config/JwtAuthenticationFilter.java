@@ -1,5 +1,10 @@
 package com.devglan.config;
 
+import com.devglan.controller.exception.runtimeException.UserInputError;
+import com.devglan.model.User;
+import com.devglan.model.UserToken;
+import com.devglan.service.UserService;
+import com.devglan.service.UserTokenService;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,20 +34,26 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @Autowired
+    private UserTokenService userTokenService;
+
+    @Autowired
+    private UserService userService;
+
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         String header = req.getHeader(HEADER_STRING);
         String username = null;
         String authToken = null;
         if (header != null && header.startsWith(TOKEN_PREFIX)) {
-            authToken = header.replace(TOKEN_PREFIX,"");
+            authToken = header.replace(TOKEN_PREFIX, "");
             try {
                 username = jwtTokenUtil.getUsernameFromToken(authToken);
             } catch (IllegalArgumentException e) {
                 logger.error("an error occured during getting username from token", e);
             } catch (ExpiredJwtException e) {
                 logger.warn("the token is expired and not valid anymore", e);
-            } catch(SignatureException e){
+            } catch (SignatureException e) {
                 logger.error("Authentication Failed. Username or Password not valid.");
             }
         } else {
@@ -51,8 +62,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            User userInstance = userService.findByUsername(username);
+            UserToken tokenInstance = userTokenService.findById(userInstance.getId());
 
             if (jwtTokenUtil.validateToken(authToken, userDetails)) {
+                System.out.print("jwtTokenUtil.validateToken: ");
+                System.out.print("tokenInstance.getToken(): "+tokenInstance.getToken());
+                System.out.print("authToken: "+authToken);
+                if (!authToken.equals(tokenInstance.getToken())) {
+                    throw new UserInputError("invalid token");
+                }
                 UsernamePasswordAuthenticationToken authentication
                         = new UsernamePasswordAuthenticationToken(userDetails, null, Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));

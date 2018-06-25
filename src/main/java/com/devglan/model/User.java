@@ -27,6 +27,14 @@ public class User {
     @Column
     private int role;
 
+    //
+    @Column
+    private String email;
+    @Column
+    private String facebookId;
+
+
+
     public int getRole() {
         return role;
     }

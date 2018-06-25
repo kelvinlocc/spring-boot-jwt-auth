@@ -51,11 +51,11 @@ public class TokenServiceImpl implements UserTokenService {
 
         UserToken userDB = tokenDao.findByUserId(userToken.getUserId());
         if (userDB == null) {
-            throw new UserInputError("user id is not valid");
+            throw new UserInputError("user id is not found");
         }
         userDB.setToken(userToken.getToken());
         userDB.setTimeStamp(TimeUtil.getCurrentTimeStamp());
-        return userDB;
+        return tokenDao.save(userDB);
     }
 
 
