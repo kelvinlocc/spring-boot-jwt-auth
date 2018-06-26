@@ -12,4 +12,5 @@ public interface ProductService {
     void delete(long id);
     Product findById(Long id);
     Product update(Product user);
+    List<Product> findByCategory(String cate);
 }

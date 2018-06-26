@@ -3,17 +3,21 @@ package com.devglan.model.product;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 
 @Entity
+@Table( name = "product" )
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column
-    private String productName;
+    private String product_name;
     @Column
     private String category;
     @Column
@@ -27,22 +31,25 @@ public class Product {
     @Column
     private long amount;
     @Column
-    private String createTimeStamp;
+    private String create_time_stamp;
     @Column
-    private String offloadTimeStamp;
+    private String update_time_stamp;
     @Column
-    private Boolean isOnSale;
+    private String offload_time_stamp;
     @Column
-    private String imageLink;
+    private Boolean is_on_sale;
+    @Column
+    private String image_link;
     @Column
     private String remark;
 
+    public String getUpdate_time_stamp() {
+        return update_time_stamp;
+    }
 
-    //
-    @Column
-    private String email;
-    @Column
-    private String facebookId;
+    public void setUpdate_time_stamp(String update_time_stamp) {
+        this.update_time_stamp = update_time_stamp;
+    }
 
     public long getId() {
         return id;
@@ -52,12 +59,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getProduct_name() {
+        return product_name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
     }
 
     public String getCategory() {
@@ -108,36 +115,40 @@ public class Product {
         this.amount = amount;
     }
 
-    public String getCreateTimeStamp() {
-        return createTimeStamp;
+
+    @JsonProperty(value = "create_time_stamp")
+    public String getCreate_time_stamp() {
+        return create_time_stamp;
     }
 
-    public void setCreateTimeStamp(String createTimeStamp) {
-        this.createTimeStamp = createTimeStamp;
+    @JsonIgnore
+    @JsonProperty(value = "create_time_stamp")
+    public void setCreate_time_stamp(String create_time_stamp) {
+        this.create_time_stamp = create_time_stamp;
     }
 
-    public String getOffloadTimeStamp() {
-        return offloadTimeStamp;
+    public String getOffload_time_stamp() {
+        return offload_time_stamp;
     }
 
-    public void setOffloadTimeStamp(String offloadTimeStamp) {
-        this.offloadTimeStamp = offloadTimeStamp;
+    public void setOffload_time_stamp(String offload_time_stamp) {
+        this.offload_time_stamp = offload_time_stamp;
     }
 
-    public Boolean getOnSale() {
-        return isOnSale;
+    public Boolean getIs_on_sale() {
+        return is_on_sale;
     }
 
-    public void setOnSale(Boolean onSale) {
-        isOnSale = onSale;
+    public void setIs_on_sale(Boolean is_on_sale) {
+        this.is_on_sale = is_on_sale;
     }
 
-    public String getImageLink() {
-        return imageLink;
+    public String getImage_link() {
+        return image_link;
     }
 
-    public void setImageLink(String imageLink) {
-        this.imageLink = imageLink;
+    public void setImage_link(String image_link) {
+        this.image_link = image_link;
     }
 
     public String getRemark() {
@@ -146,43 +157,5 @@ public class Product {
 
     public void setRemark(String remark) {
         this.remark = remark;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFacebookId() {
-        return facebookId;
-    }
-
-    public void setFacebookId(String facebookId) {
-        this.facebookId = facebookId;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", productName='" + productName + '\'' +
-                ", category='" + category + '\'' +
-                ", color='" + color + '\'' +
-                ", level='" + level + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", amount=" + amount +
-                ", createTimeStamp='" + createTimeStamp + '\'' +
-                ", offloadTimeStamp='" + offloadTimeStamp + '\'' +
-                ", isOnSale=" + isOnSale +
-                ", imageLink='" + imageLink + '\'' +
-                ", remark='" + remark + '\'' +
-                ", email='" + email + '\'' +
-                ", facebookId='" + facebookId + '\'' +
-                '}';
     }
 }

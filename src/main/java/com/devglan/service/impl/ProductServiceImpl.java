@@ -5,6 +5,7 @@ import com.devglan.controller.exception.runtimeException.UserInputError;
 import com.devglan.dao.ProductDao;
 import com.devglan.model.product.Product;
 import com.devglan.service.ProductService;
+import com.devglan.untility.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Service(value = "Product")
+@Service(value = "ProductService")
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductDao productDao;
+
 
 
     public List<Product> findAll() {
@@ -43,8 +45,8 @@ public class ProductServiceImpl implements ProductService {
         if (isDuplicated(product)) {
             throw new ServerInternalError("product id is duplicated " + product.getId());
         }
-
-
+        product.setCreate_time_stamp(TimeUtil.getCurrentTimeStamp());
+        product.setUpdate_time_stamp(TimeUtil.getCurrentTimeStamp());
         return productDao.save(product);
     }
 
@@ -56,7 +58,13 @@ public class ProductServiceImpl implements ProductService {
             throw new UserInputError("invalid productId");
         }
         // check product id
+        product.setUpdate_time_stamp(TimeUtil.getCurrentTimeStamp());
         return productDao.save(product);
+    }
+
+    @Override
+    public List<Product> findByCategory(String cate) {
+        return productDao.findByCategory(cate);
     }
 
     private boolean isDuplicated(Product product) {
