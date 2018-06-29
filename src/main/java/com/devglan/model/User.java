@@ -27,7 +27,6 @@ public class User {
     @Column
     private int role;
 
-    //
     @Column
     private String email;
     @Column

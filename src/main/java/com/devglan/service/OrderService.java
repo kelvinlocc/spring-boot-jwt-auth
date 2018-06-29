@@ -1,16 +1,19 @@
 package com.devglan.service;
 
+import com.devglan.model.product.Order;
 import com.devglan.model.product.Product;
 
 import java.util.List;
 
 public interface OrderService {
 
-    Product add(Product user);
-    List<Product> findAll();
+    Order add(Order user);
+    List<Order> findAll();
     void delete(long id);
-    Product findById(Long id);
-    Product update(Product user);
-    List<Product> findByBuyerName(String buyerName);
-    List<Product> findByBuyerId(Long BuyerId);
+    Order findById(Long id);
+    Order update(Order user);
+    List<Order> findByBuyerId(Long BuyerId);
+    List<Order> findByBuyerName(String buyerName);
+    List<Order> findByProductId(Long ProductId);
+    List<Order> findByProductName(String productName);
 }

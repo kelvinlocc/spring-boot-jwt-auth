@@ -15,4 +15,7 @@ public interface ProductDao extends CrudRepository<Product, Long> {
 
     @Query(value = "SELECT * FROM Product WHERE category=:#{#cate}", nativeQuery = true)
     List<Product> findByCategory(@Param("cate") String cate);
+
+    //    @Query(value = "SELECT * FROM Product WHERE category=:#{#cate}", nativeQuery = true)
+    Product findByProductName(String product_name);
 }

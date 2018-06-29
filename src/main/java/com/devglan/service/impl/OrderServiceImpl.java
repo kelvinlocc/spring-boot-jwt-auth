@@ -2,8 +2,12 @@ package com.devglan.service.impl;
 
 import com.devglan.controller.exception.runtimeException.ServerInternalError;
 import com.devglan.controller.exception.runtimeException.UserInputError;
+import com.devglan.dao.OrderDao;
+import com.devglan.dao.ProductDao;
 import com.devglan.dao.UserDao;
 import com.devglan.model.User;
+import com.devglan.model.product.Order;
+import com.devglan.service.OrderService;
 import com.devglan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,87 +22,77 @@ import java.util.Arrays;
 import java.util.List;
 
 
-@Service(value = "userService")
-public class OrderServiceImpl implements UserDetailsService, UserService {
+@Service(value = "orderService")
+public class OrderServiceImpl implements OrderService {
+
+    @Autowired
+    private OrderDao orderDao;
 
     @Autowired
     private UserDao userDao;
-
-
-
     @Autowired
-    private BCryptPasswordEncoder bcryptEncoder;
-
-    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        User user = userDao.findByUsername(userId);
-        if (user == null) {
-            throw new UsernameNotFoundException("Invalid username or password.");
-        }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority());
+    private ProductDao productDao;
+    @Override
+    public Order add(Order order) {
+        return orderDao.save(order);
     }
 
-    private List<SimpleGrantedAuthority> getAuthority() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
-    }
-
-    public List<User> findAll() {
-        List<User> list = new ArrayList<>();
-        userDao.findAll().iterator().forEachRemaining(list::add);
+    public List<Order> findAll() {
+        List<Order> list = new ArrayList<>();
+        orderDao.findAll().iterator().forEachRemaining(list::add);
         return list;
     }
 
     @Override
     public void delete(long id) {
-        userDao.delete(id);
+        orderDao.delete(id);
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userDao.findByUsername(username);
-    }
-
-    @Override
-    public User findById(Long id) {
-        return userDao.findOne(id);
+    public Order findById(Long id) {
+        return orderDao.findOne(id);
     }
 
 
     @Override
-    public User add(User user) {
-        if (isDuplicated(user)) {
-            throw new ServerInternalError("username is duplicated " + user.getUsername());
+    public Order update(Order order) {
+        Order orderInstance = findById(order.getId());
+        if (orderInstance == null) {
+            throw new UserInputError("invalid order id");
+        }
+        order.setCreate_timestamp(orderInstance.getCreate_timestamp());
+        return orderDao.save(order);
+    }
+
+    @Override
+    public List<Order> findByBuyerName(String buyerName) {
+        User userInstance = userDao.findByUsername(buyerName);
+        if (userInstance == null) {
+            throw new UserInputError("invalid input value");
         }
 
-        User newUser = new User();
-        newUser.setUsername(user.getUsername());
-        newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-        newUser.setSalary(user.getSalary());
-        newUser.setAge(user.getAge());
-        return userDao.save(newUser);
+        return orderDao.findByBuyerId(userInstance.getId());
     }
 
     @Override
-    public User update(User user) {
-        if (user.getUsername().isEmpty()) {
-            throw new UserInputError("invalid username");
-        }
-
-
-        User userFromServer = findByUsername(user.getUsername());
-        if (userFromServer == null) {
-            throw new UserInputError("invalid username");
-        }
-
-        user.setId(userFromServer.getId());
-        userFromServer.setUsername(user.getUsername());
-        userFromServer.setPassword(bcryptEncoder.encode(user.getPassword()));
-        userFromServer.setSalary(user.getSalary());
-        userFromServer.setAge(user.getAge());
-
-        return userDao.save(userFromServer);
+    public List<Order> findByBuyerId(Long buyerId) {
+        return orderDao.findByBuyerId(buyerId);
     }
 
-    private boolean isDuplicated(User user) {
-        return findByUsername(user.getUsername()) != null;
+    @Override
+    public List<Order> findByProductId(Long ProductId) {
+        return orderDao.findByProductId(ProductId);
     }
+
+    @Override
+    public List<Order> findByProductName(String productName) {
+        List<Order> productInstance = findByProductName(productName);
+        if (productInstance == null) {
+
+        }
+//        return ord;
+        return null;
+    }
+
+
 }
