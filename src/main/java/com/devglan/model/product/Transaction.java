@@ -1,15 +1,12 @@
 package com.devglan.model.product;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 
 
 @Entity
-@Table(name = "Order")
-public class Order {
+@Table(name = "Transaction")
+public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,8 +22,6 @@ public class Order {
     @Column
     private String proudct_id;
     @Column
-    private String prouduct_cate;
-    @Column
     private String product_name;
     @Column
     private Long price;
@@ -39,17 +34,8 @@ public class Order {
     private boolean is_valid;
     @Column
     private String expire_timestamp;
-
-    // pick up
-    // face to face
-    // ATM
-    @Column
-    private String payment_type;
-    @Column
-    private String transaction_timestamp;
-    @Column
-    private String transaction_location;
     @Column
     private String remark;
+
 
 }
