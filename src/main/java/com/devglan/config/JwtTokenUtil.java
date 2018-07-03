@@ -1,6 +1,6 @@
 package com.devglan.config;
 
-import com.devglan.model.User;
+import com.devglan.model.user;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -44,7 +44,7 @@ public class JwtTokenUtil implements Serializable {
         return expiration.before(new Date());
     }
 
-    public String generateToken(User user) {
+    public String generateToken(user user) {
         return doGenerateToken(user.getUsername());
     }
 

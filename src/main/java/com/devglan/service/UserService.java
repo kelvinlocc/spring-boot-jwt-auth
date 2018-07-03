@@ -1,15 +1,15 @@
 package com.devglan.service;
 
-import com.devglan.model.User;
+import com.devglan.model.user;
 
 import java.util.List;
 
 public interface UserService  {
 
-    User add(User user);
-    List<User> findAll();
+    user add(user user);
+    List<user> findAll();
     void delete(long id);
-    User findByUsername(String username);
-    User findById(Long id);
-    User update(User user);
+    user findByUsername(String username);
+    user findById(Long id);
+    user update(user user);
 }

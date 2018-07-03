@@ -1,7 +1,7 @@
 package com.devglan.config;
 
 import com.devglan.controller.exception.runtimeException.UserInputError;
-import com.devglan.model.User;
+import com.devglan.model.user;
 import com.devglan.model.UserToken;
 import com.devglan.service.UserService;
 import com.devglan.service.UserTokenService;
@@ -62,7 +62,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            User userInstance = userService.findByUsername(username);
+            user userInstance = userService.findByUsername(username);
             UserToken tokenInstance = userTokenService.findById(userInstance.getId());
 
             if (jwtTokenUtil.validateToken(authToken, userDetails)) {

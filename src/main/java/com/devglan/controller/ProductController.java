@@ -2,15 +2,10 @@ package com.devglan.controller;
 
 import com.devglan.controller.exception.runtimeException.UserInputError;
 import com.devglan.controller.misc.PublicApiController;
-import com.devglan.model.LoginUser;
-import com.devglan.model.User;
-import com.devglan.model.UserToken;
-import com.devglan.model.product.Product;
+import com.devglan.model.product.product;
 import com.devglan.service.ProductService;
 import com.devglan.untility.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,18 +23,18 @@ public class ProductController {
     private ProductService productService;
 
     @RequestMapping(value = "/product/add", method = RequestMethod.POST)
-    public Product saveUser(@RequestBody Product product) {
+    public product saveUser(@RequestBody product product) {
         System.out.print("requesting /signUp ");
-        System.out.print(" User object" + product.toString());
+        System.out.print(" user object" + product.toString());
 
         return productService.add(product);
     }
 
     @RequestMapping(value = "/product/update", method = RequestMethod.POST)
-    public Product updateProduct(@RequestBody Product product) {
+    public product updateProduct(@RequestBody product product) {
         System.out.print("requesting /updateUser ");
-        System.out.print(" User object" + product.toString());
-        Product productInstance = productService.findById(product.getId());
+        System.out.print(" user object" + product.toString());
+        com.devglan.model.product.product productInstance = productService.findById(product.getId());
         if (productInstance == null) {
             throw new UserInputError("product id is invalid");
         }
@@ -49,22 +44,22 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/products", method = RequestMethod.GET)
-    public List<Product> listProducts() {
+    public List<product> listProducts() {
         return productService.findAll();
     }
 
     @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
-    public Product getProductById(@PathVariable(value = "id") Long id) {
+    public product getProductById(@PathVariable(value = "id") Long id) {
         return productService.findById(id);
     }
 
     @RequestMapping(value = "/product/delete", method = RequestMethod.GET)
-    public void deleteProduct(@RequestBody Product product) {
+    public void deleteProduct(@RequestBody product product) {
         productService.delete(product.getId());
     }
 
     @RequestMapping(value = "/product/category/{cate}", method = RequestMethod.GET)
-    public List<Product> findyProductBycate(@PathVariable(value = "cate")String cate) {
+    public List<product> findyProductBycate(@PathVariable(value = "cate")String cate) {
         return productService.findByCategory(cate);
     }
 }

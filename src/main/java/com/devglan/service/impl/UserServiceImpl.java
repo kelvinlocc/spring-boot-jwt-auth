@@ -3,14 +3,10 @@ package com.devglan.service.impl;
 import com.devglan.controller.exception.runtimeException.ServerInternalError;
 import com.devglan.controller.exception.runtimeException.UserInputError;
 import com.devglan.dao.UserDao;
-import com.devglan.model.User;
+import com.devglan.model.user;
 import com.devglan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -34,7 +30,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     private BCryptPasswordEncoder bcryptEncoder;
 
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        User user = userDao.findByUsername(userId);
+        user user = userDao.findByUsername(userId);
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
@@ -45,8 +41,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 
-    public List<User> findAll() {
-        List<User> list = new ArrayList<>();
+    public List<user> findAll() {
+        List<user> list = new ArrayList<>();
         userDao.findAll().iterator().forEachRemaining(list::add);
         return list;
     }
@@ -57,23 +53,23 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public User findByUsername(String username) {
+    public user findByUsername(String username) {
         return userDao.findByUsername(username);
     }
 
     @Override
-    public User findById(Long id) {
+    public user findById(Long id) {
         return userDao.findOne(id);
     }
 
 
     @Override
-    public User add(User user) {
+    public user add(user user) {
         if (isDuplicated(user)) {
             throw new ServerInternalError("username is duplicated " + user.getUsername());
         }
 
-        User newUser = new User();
+        com.devglan.model.user newUser = new user();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
         newUser.setSalary(user.getSalary());
@@ -82,13 +78,13 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public User update(User user) {
+    public user update(user user) {
         if (user.getUsername().isEmpty()) {
             throw new UserInputError("invalid username");
         }
 
 
-        User userFromServer = findByUsername(user.getUsername());
+        com.devglan.model.user userFromServer = findByUsername(user.getUsername());
         if (userFromServer == null) {
             throw new UserInputError("invalid username");
         }
@@ -102,7 +98,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return userDao.save(userFromServer);
     }
 
-    private boolean isDuplicated(User user) {
+    private boolean isDuplicated(user user) {
         return findByUsername(user.getUsername()) != null;
     }
 }

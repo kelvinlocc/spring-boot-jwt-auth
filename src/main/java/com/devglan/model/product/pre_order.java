@@ -1,18 +1,19 @@
-package com.devglan.model.product;
+ package com.devglan.model.product;
 
 
 import javax.persistence.*;
 
 
 @Entity
-@Table(name = "Order")
-public class Order {
+@Table(name = "pre_order")
+public class pre_order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column
     private String buyer_id;
+
     @Column
     private String buyer_name;
     @Column
@@ -57,6 +58,16 @@ public class Order {
         this.id = id;
     }
 
+
+
+    public String getCreate_timestamp() {
+        return create_timestamp;
+    }
+
+    public void setCreate_timestamp(String create_timestamp) {
+        this.create_timestamp = create_timestamp;
+    }
+
     public String getBuyer_id() {
         return buyer_id;
     }
@@ -71,14 +82,6 @@ public class Order {
 
     public void setBuyer_name(String buyer_name) {
         this.buyer_name = buyer_name;
-    }
-
-    public String getCreate_timestamp() {
-        return create_timestamp;
-    }
-
-    public void setCreate_timestamp(String create_timestamp) {
-        this.create_timestamp = create_timestamp;
     }
 
     public String getStatus() {

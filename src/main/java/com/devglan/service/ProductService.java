@@ -1,16 +1,16 @@
 package com.devglan.service;
 
-import com.devglan.model.product.Product;
+import com.devglan.model.product.product;
 
 import java.util.List;
 
 public interface ProductService {
 
-    Product add(Product user);
-    List<Product> findAll();
+    product add(product user);
+    List<product> findAll();
     void delete(long id);
-    Product findById(Long id);
-    Product findByProductName(String productName);
-    Product update(Product user);
-    List<Product> findByCategory(String cate);
+    product findById(Long id);
+    product findByProductName(String productName);
+    product update(product user);
+    List<product> findByCategory(String cate);
 }

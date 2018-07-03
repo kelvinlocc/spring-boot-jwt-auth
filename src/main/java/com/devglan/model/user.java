@@ -11,7 +11,7 @@ import javax.persistence.*;
 
 
 @Entity
-public class User {
+public class user {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -68,7 +68,7 @@ public class User {
     @JsonProperty(value = "password")
     public void setPassword(String password) {
 
-        System.out.print("User object call setPassword method: String password: " + password);
+        System.out.print("user object call setPassword method: String password: " + password);
         this.password = password;
     }
 
@@ -90,7 +90,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "user{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

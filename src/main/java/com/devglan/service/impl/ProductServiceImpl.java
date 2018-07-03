@@ -3,7 +3,7 @@ package com.devglan.service.impl;
 import com.devglan.controller.exception.runtimeException.ServerInternalError;
 import com.devglan.controller.exception.runtimeException.UserInputError;
 import com.devglan.dao.ProductDao;
-import com.devglan.model.product.Product;
+import com.devglan.model.product.product;
 import com.devglan.service.ProductService;
 import com.devglan.untility.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,8 @@ public class ProductServiceImpl implements ProductService {
 
 
 
-    public List<Product> findAll() {
-        List<Product> list = new ArrayList<>();
+    public List<product> findAll() {
+        List<product> list = new ArrayList<>();
         productDao.findAll().iterator().forEachRemaining(list::add);
         return list;
     }
@@ -35,18 +35,19 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public Product findById(Long id) {
+    public product findById(Long id) {
         return productDao.findOne(id);
     }
 
     @Override
-    public Product findByProductName(String productName) {
-        return productDao.findByProductName(productName);
+    public product findByProductName(String productName) {
+//        return productDao.findByProductName(productName);
+        return null;
     }
 
 
     @Override
-    public Product add(Product product) {
+    public product add(product product) {
         if (isDuplicated(product)) {
             throw new ServerInternalError("product id is duplicated " + product.getId());
         }
@@ -56,9 +57,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product update(Product product) {
+    public product update(product product) {
 
-        Product productInstance = productDao.findById(product.getId());
+        com.devglan.model.product.product productInstance = productDao.findById(product.getId());
         if (productInstance == null) {
             throw new UserInputError("invalid productId");
         }
@@ -68,11 +69,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findByCategory(String cate) {
+    public List<product> findByCategory(String cate) {
         return productDao.findByCategory(cate);
     }
 
-    private boolean isDuplicated(Product product) {
+    private boolean isDuplicated(product product) {
         return findById(product.getId()) != null;
     }
 }

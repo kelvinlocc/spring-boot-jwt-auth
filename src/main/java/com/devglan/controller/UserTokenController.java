@@ -18,12 +18,12 @@ public class UserTokenController {
     private UserService userService;
 
 //    @RequestMapping(value="/user", method = RequestMethod.GET)
-//    public List<User> listUser(){
+//    public List<user> listUser(){
 //        return userTokenService.findAll();
 //    }
 //
 //    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-//    public User getOne(@PathVariable(value = "id") Long id){
+//    public user getOne(@PathVariable(value = "id") Long id){
 //        return userTokenService.findById(id);
 //    }
 
@@ -31,7 +31,7 @@ public class UserTokenController {
     public UserToken saveUser(@RequestBody UserToken userToken){
 
         System.out.print("requesting /addToken ");
-        System.out.print(" User object" +userToken.toString());
+        System.out.print(" user object" +userToken.toString());
 
         return this.userTokenService.add(userToken);
     }

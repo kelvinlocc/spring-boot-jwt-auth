@@ -1,24 +1,16 @@
 package com.devglan.service.impl;
 
-import com.devglan.controller.exception.runtimeException.ServerInternalError;
 import com.devglan.controller.exception.runtimeException.UserInputError;
 import com.devglan.dao.OrderDao;
 import com.devglan.dao.ProductDao;
 import com.devglan.dao.UserDao;
-import com.devglan.model.User;
-import com.devglan.model.product.Order;
+import com.devglan.model.user;
+import com.devglan.model.product.pre_order;
 import com.devglan.service.OrderService;
-import com.devglan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -33,12 +25,12 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private ProductDao productDao;
     @Override
-    public Order add(Order order) {
-        return orderDao.save(order);
+    public pre_order add(pre_order preorder) {
+        return orderDao.save(preorder);
     }
 
-    public List<Order> findAll() {
-        List<Order> list = new ArrayList<>();
+    public List<pre_order> findAll() {
+        List<pre_order> list = new ArrayList<>();
         orderDao.findAll().iterator().forEachRemaining(list::add);
         return list;
     }
@@ -49,24 +41,24 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order findById(Long id) {
+    public pre_order findById(Long id) {
         return orderDao.findOne(id);
     }
 
 
     @Override
-    public Order update(Order order) {
-        Order orderInstance = findById(order.getId());
-        if (orderInstance == null) {
-            throw new UserInputError("invalid order id");
+    public pre_order update(pre_order preorder) {
+        pre_order preorderInstance = findById(preorder.getId());
+        if (preorderInstance == null) {
+            throw new UserInputError("invalid preorder id");
         }
-        order.setCreate_timestamp(orderInstance.getCreate_timestamp());
-        return orderDao.save(order);
+        preorder.setCreate_timestamp(preorderInstance.getCreate_timestamp());
+        return orderDao.save(preorder);
     }
 
     @Override
-    public List<Order> findByBuyerName(String buyerName) {
-        User userInstance = userDao.findByUsername(buyerName);
+    public List<pre_order> findByBuyerName(String buyerName) {
+        user userInstance = userDao.findByUsername(buyerName);
         if (userInstance == null) {
             throw new UserInputError("invalid input value");
         }
@@ -75,18 +67,18 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> findByBuyerId(Long buyerId) {
+    public List<pre_order> findByBuyerId(Long buyerId) {
         return orderDao.findByBuyerId(buyerId);
     }
 
     @Override
-    public List<Order> findByProductId(Long ProductId) {
+    public List<pre_order> findByProductId(Long ProductId) {
         return orderDao.findByProductId(ProductId);
     }
 
     @Override
-    public List<Order> findByProductName(String productName) {
-        List<Order> productInstance = findByProductName(productName);
+    public List<pre_order> findByProductName(String productName) {
+        List<pre_order> productInstance = findByProductName(productName);
         if (productInstance == null) {
 
         }

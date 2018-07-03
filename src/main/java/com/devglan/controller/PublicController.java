@@ -3,7 +3,7 @@ package com.devglan.controller;
 import com.devglan.controller.exception.runtimeException.UserInputError;
 import com.devglan.controller.misc.PublicApiController;
 import com.devglan.model.LoginUser;
-import com.devglan.model.User;
+import com.devglan.model.user;
 import com.devglan.model.UserToken;
 import com.devglan.service.UserService;
 import com.devglan.service.UserTokenService;
@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,9 +30,9 @@ public class PublicController {
     private UserTokenService userTokenService;
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
-    public User saveUser(@RequestBody User user) {
+    public user saveUser(@RequestBody user user) {
         System.out.print("requesting /signUp ");
-        System.out.print(" User object" + user.toString());
+        System.out.print(" user object" + user.toString());
 
         return userService.add(user);
     }
@@ -41,8 +40,8 @@ public class PublicController {
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public UserToken logoutUser(@RequestBody LoginUser user) {
         System.out.print("requesting /logout ");
-        System.out.print(" User object" + user.toString());
-        User userInstance = userService.findByUsername(user.getUsername());
+        System.out.print(" user object" + user.toString());
+        com.devglan.model.user userInstance = userService.findByUsername(user.getUsername());
         if (userInstance == null) {
             throw new UserInputError("invalid username");
         }
@@ -63,15 +62,15 @@ public class PublicController {
      * temp
      **/
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-    public User updateUser(@RequestBody User user) {
+    public user updateUser(@RequestBody user user) {
         System.out.print("requesting /updateUser ");
-        System.out.print(" User object" + user.toString());
+        System.out.print(" user object" + user.toString());
         if (user.getUsername().isEmpty()) {
             throw new UserInputError("invalid username");
         }
 
 
-        User userFromServer = userService.findByUsername(user.getUsername());
+        com.devglan.model.user userFromServer = userService.findByUsername(user.getUsername());
         if (userFromServer == null) {
             throw new UserInputError("invalid username");
         }
@@ -82,7 +81,7 @@ public class PublicController {
                         user.getPassword()
                 )
         );
-       
+
 
         return userService.update(user);
     }
