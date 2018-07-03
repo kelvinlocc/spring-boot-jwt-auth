@@ -1,4 +1,4 @@
-package com.devglan.model;
+package com.devglan.model.InternalEntity;
 
 public class Constants {
 

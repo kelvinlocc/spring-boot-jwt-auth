@@ -1,10 +1,10 @@
 package com.devglan.controller;
 
-import com.devglan.controller.exception.runtimeException.UserInputError;
+import com.devglan.controller.exception.runtimeException.GeneralError;
 import com.devglan.controller.misc.PublicApiController;
-import com.devglan.model.LoginUser;
-import com.devglan.model.user;
-import com.devglan.model.UserToken;
+import com.devglan.model.InternalEntity.LoginUser;
+import com.devglan.model.SqlEntity.User;
+import com.devglan.model.SqlEntity.UserToken;
 import com.devglan.service.UserService;
 import com.devglan.service.UserTokenService;
 import com.devglan.untility.TimeUtil;
@@ -30,9 +30,9 @@ public class PublicController {
     private UserTokenService userTokenService;
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
-    public user saveUser(@RequestBody user user) {
+    public User saveUser(@RequestBody User user) {
         System.out.print("requesting /signUp ");
-        System.out.print(" user object" + user.toString());
+        System.out.print(" User object" + user.toString());
 
         return userService.add(user);
     }
@@ -40,17 +40,17 @@ public class PublicController {
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public UserToken logoutUser(@RequestBody LoginUser user) {
         System.out.print("requesting /logout ");
-        System.out.print(" user object" + user.toString());
-        com.devglan.model.user userInstance = userService.findByUsername(user.getUsername());
+        System.out.print(" User object" + user.toString());
+        User userInstance = userService.findByUsername(user.getUsername());
         if (userInstance == null) {
-            throw new UserInputError("invalid username");
+            throw new GeneralError("invalid username");
         }
-//        if (!userInstance.getPassword().equals(user.getPassword())) {
-//            throw new UserInputError("invalid password");
+//        if (!userInstance.getPassword().equals(User.getPassword())) {
+//            throw new GeneralError("invalid password");
 //        }
         UserToken tokenInstance = userTokenService.findById(userInstance.getId());
         if (tokenInstance == null) {
-            throw new UserInputError("internal error");
+            throw new GeneralError("internal error");
         }
         tokenInstance.setTimeStamp(TimeUtil.getCurrentTimeStamp());
         tokenInstance.setToken(null);
@@ -62,17 +62,17 @@ public class PublicController {
      * temp
      **/
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-    public user updateUser(@RequestBody user user) {
+    public User updateUser(@RequestBody User user) {
         System.out.print("requesting /updateUser ");
-        System.out.print(" user object" + user.toString());
+        System.out.print(" User object" + user.toString());
         if (user.getUsername().isEmpty()) {
-            throw new UserInputError("invalid username");
+            throw new GeneralError("invalid username");
         }
 
 
-        com.devglan.model.user userFromServer = userService.findByUsername(user.getUsername());
+        User userFromServer = userService.findByUsername(user.getUsername());
         if (userFromServer == null) {
-            throw new UserInputError("invalid username");
+            throw new GeneralError("invalid username");
         }
 
         final Authentication authentication = authenticationManager.authenticate(

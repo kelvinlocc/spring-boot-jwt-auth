@@ -1,6 +1,6 @@
 package com.devglan.config;
 
-import com.devglan.model.user;
+import com.devglan.model.SqlEntity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -13,8 +13,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.function.Function;
 
-import static com.devglan.model.Constants.ACCESS_TOKEN_VALIDITY_SECONDS;
-import static com.devglan.model.Constants.SIGNING_KEY;
+import static com.devglan.model.InternalEntity.Constants.ACCESS_TOKEN_VALIDITY_SECONDS;
+import static com.devglan.model.InternalEntity.Constants.SIGNING_KEY;
 
 @Component
 public class JwtTokenUtil implements Serializable {
@@ -44,7 +44,7 @@ public class JwtTokenUtil implements Serializable {
         return expiration.before(new Date());
     }
 
-    public String generateToken(user user) {
+    public String generateToken(User user) {
         return doGenerateToken(user.getUsername());
     }
 

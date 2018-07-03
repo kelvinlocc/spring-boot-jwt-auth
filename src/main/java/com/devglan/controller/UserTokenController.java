@@ -1,7 +1,7 @@
 package com.devglan.controller;
 
 import com.devglan.controller.misc.PublicApiController;
-import com.devglan.model.UserToken;
+import com.devglan.model.SqlEntity.UserToken;
 import com.devglan.service.UserService;
 import com.devglan.service.UserTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +17,23 @@ public class UserTokenController {
     @Autowired
     private UserService userService;
 
-//    @RequestMapping(value="/user", method = RequestMethod.GET)
-//    public List<user> listUser(){
+//    @RequestMapping(value="/User", method = RequestMethod.GET)
+//    public List<User> listUser(){
 //        return userTokenService.findAll();
 //    }
 //
-//    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-//    public user getOne(@PathVariable(value = "id") Long id){
+//    @RequestMapping(value = "/User/{id}", method = RequestMethod.GET)
+//    public User getOne(@PathVariable(value = "id") Long id){
 //        return userTokenService.findById(id);
 //    }
 
     @RequestMapping(value="/addToken", method = RequestMethod.POST)
-    public UserToken saveUser(@RequestBody UserToken userToken){
+    public UserToken saveUser(@RequestBody UserToken usertoken){
 
         System.out.print("requesting /addToken ");
-        System.out.print(" user object" +userToken.toString());
+        System.out.print(" User object" + usertoken.toString());
 
-        return this.userTokenService.add(userToken);
+        return this.userTokenService.add(usertoken);
     }
 
 

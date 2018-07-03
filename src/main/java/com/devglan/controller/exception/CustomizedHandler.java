@@ -1,7 +1,7 @@
 package com.devglan.controller.exception;
 
 import com.devglan.controller.exception.runtimeException.ServerInternalError;
-import com.devglan.controller.exception.runtimeException.UserInputError;
+import com.devglan.controller.exception.runtimeException.GeneralError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,7 +19,7 @@ import java.util.Date;
 @RestController
 public class CustomizedHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({ServerInternalError.class, UserInputError.class})
+    @ExceptionHandler({ServerInternalError.class, GeneralError.class})
     public final ResponseEntity<ErrorDetails> handleUserNotFoundException(ServerInternalError serverInternalError, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), serverInternalError.getMessage(),
                 request.getDescription(false));

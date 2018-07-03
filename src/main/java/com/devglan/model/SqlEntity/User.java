@@ -1,4 +1,4 @@
-package com.devglan.model;
+package com.devglan.model.SqlEntity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -11,7 +11,8 @@ import javax.persistence.*;
 
 
 @Entity
-public class user {
+@Table( name = "user" )
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -68,7 +69,7 @@ public class user {
     @JsonProperty(value = "password")
     public void setPassword(String password) {
 
-        System.out.print("user object call setPassword method: String password: " + password);
+        System.out.print("User object call setPassword method: String password: " + password);
         this.password = password;
     }
 
@@ -90,7 +91,7 @@ public class user {
 
     @Override
     public String toString() {
-        return "user{" +
+        return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

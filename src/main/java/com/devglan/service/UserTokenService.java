@@ -1,11 +1,11 @@
 package com.devglan.service;
 
-import com.devglan.model.UserToken;
+import com.devglan.model.SqlEntity.UserToken;
 
 public interface UserTokenService {
 
-    UserToken add(UserToken userToken);
+    UserToken add(UserToken usertoken);
     void delete(long id);
     UserToken findById(Long id);
-    UserToken update(UserToken userToken);
+    UserToken update(UserToken usertoken);
 }

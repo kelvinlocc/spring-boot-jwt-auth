@@ -1,9 +1,9 @@
 package com.devglan.service.impl;
 
 import com.devglan.controller.exception.runtimeException.ServerInternalError;
-import com.devglan.controller.exception.runtimeException.UserInputError;
+import com.devglan.controller.exception.runtimeException.GeneralError;
 import com.devglan.dao.UserDao;
-import com.devglan.model.user;
+import com.devglan.model.SqlEntity.User;
 import com.devglan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     private BCryptPasswordEncoder bcryptEncoder;
 
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        user user = userDao.findByUsername(userId);
+        User user = userDao.findByUsername(userId);
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
@@ -41,8 +41,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 
-    public List<user> findAll() {
-        List<user> list = new ArrayList<>();
+    public List<User> findAll() {
+        List<User> list = new ArrayList<>();
         userDao.findAll().iterator().forEachRemaining(list::add);
         return list;
     }
@@ -53,23 +53,23 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public user findByUsername(String username) {
+    public User findByUsername(String username) {
         return userDao.findByUsername(username);
     }
 
     @Override
-    public user findById(Long id) {
+    public User findById(Long id) {
         return userDao.findOne(id);
     }
 
 
     @Override
-    public user add(user user) {
+    public User add(User user) {
         if (isDuplicated(user)) {
             throw new ServerInternalError("username is duplicated " + user.getUsername());
         }
 
-        com.devglan.model.user newUser = new user();
+        User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
         newUser.setSalary(user.getSalary());
@@ -78,15 +78,15 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public user update(user user) {
+    public User update(User user) {
         if (user.getUsername().isEmpty()) {
-            throw new UserInputError("invalid username");
+            throw new GeneralError("invalid username");
         }
 
 
-        com.devglan.model.user userFromServer = findByUsername(user.getUsername());
+        User userFromServer = findByUsername(user.getUsername());
         if (userFromServer == null) {
-            throw new UserInputError("invalid username");
+            throw new GeneralError("invalid username");
         }
 
         user.setId(userFromServer.getId());
@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return userDao.save(userFromServer);
     }
 
-    private boolean isDuplicated(user user) {
+    private boolean isDuplicated(User user) {
         return findByUsername(user.getUsername()) != null;
     }
 }

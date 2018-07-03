@@ -1,20 +1,5 @@
 
-target/classes/com/devglan/config/WebSecurityConfig.class
-target/classes/com/devglan/controller/ProductController.class
-target/classes/com/devglan/controller/UserController.class
-target/classes/com/devglan/dao/ProductByCateDao.class
-target/classes/com/devglan/dao/ProductDao.class
-target/classes/com/devglan/model/product/Product.class
-target/classes/com/devglan/model/User.class
-target/classes/com/devglan/service/impl/ProductServiceImpl.class
-target/classes/com/devglan/service/ProductService.class
-target/classes/JSON.json
-target/classes/com/devglan/config/WebSecurityConfig.class
-target/classes/com/devglan/controller/UserController.class
-target/classes/com/devglan/model/User.class
+target/
+target/classes/data(pick up)
 .idea/workspace.xml
-target/classes/com/devglan/model/User.class
-target/classes/com/devglan/controller/UserController.class
-target/classes/com/devglan/config/WebSecurityConfig.class
-.idea/workspace.xml
-.idea/workspace.xml
+- Copy_DOT_gitignore

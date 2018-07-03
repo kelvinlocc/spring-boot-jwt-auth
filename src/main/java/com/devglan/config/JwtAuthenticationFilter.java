@@ -1,8 +1,8 @@
 package com.devglan.config;
 
-import com.devglan.controller.exception.runtimeException.UserInputError;
-import com.devglan.model.user;
-import com.devglan.model.UserToken;
+import com.devglan.controller.exception.runtimeException.GeneralError;
+import com.devglan.model.SqlEntity.User;
+import com.devglan.model.SqlEntity.UserToken;
 import com.devglan.service.UserService;
 import com.devglan.service.UserTokenService;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -23,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 
-import static com.devglan.model.Constants.HEADER_STRING;
-import static com.devglan.model.Constants.TOKEN_PREFIX;
+import static com.devglan.model.InternalEntity.Constants.HEADER_STRING;
+import static com.devglan.model.InternalEntity.Constants.TOKEN_PREFIX;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
@@ -62,7 +62,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            user userInstance = userService.findByUsername(username);
+            User userInstance = userService.findByUsername(username);
             UserToken tokenInstance = userTokenService.findById(userInstance.getId());
 
             if (jwtTokenUtil.validateToken(authToken, userDetails)) {
@@ -70,12 +70,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 System.out.print("tokenInstance.getToken(): "+tokenInstance.getToken());
                 System.out.print("authToken: "+authToken);
                 if (!authToken.equals(tokenInstance.getToken())) {
-                    throw new UserInputError("invalid token");
+                    throw new GeneralError("invalid token");
                 }
                 UsernamePasswordAuthenticationToken authentication
                         = new UsernamePasswordAuthenticationToken(userDetails, null, Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
-                logger.info("authenticated user " + username + ", setting security context");
+                logger.info("authenticated User " + username + ", setting security context");
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }

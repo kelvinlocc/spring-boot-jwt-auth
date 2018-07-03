@@ -1,10 +1,10 @@
 package com.devglan.controller;
 
 import com.devglan.config.JwtTokenUtil;
-import com.devglan.model.AuthToken;
-import com.devglan.model.LoginUser;
-import com.devglan.model.user;
-import com.devglan.model.UserToken;
+import com.devglan.model.InternalEntity.AuthToken;
+import com.devglan.model.InternalEntity.LoginUser;
+import com.devglan.model.SqlEntity.User;
+import com.devglan.model.SqlEntity.UserToken;
 import com.devglan.service.UserService;
 import com.devglan.service.UserTokenService;
 import com.devglan.untility.TimeUtil;
@@ -37,17 +37,17 @@ public class AuthenticationController {
     private UserTokenService userTokenService;
 
     @RequestMapping(value = "/generate-token", method = RequestMethod.POST)
-    public ResponseEntity<?> register(@RequestBody LoginUser loginUser) throws AuthenticationException {
+    public ResponseEntity<?> register(@RequestBody LoginUser loginser) throws AuthenticationException {
 
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginUser.getUsername(),
-                        loginUser.getPassword()
+                        loginser.getUsername(),
+                        loginser.getPassword()
                 )
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        final user user = userService.findByUsername(loginUser.getUsername());
+        final User user = userService.findByUsername(loginser.getUsername());
 
         final String token = jwtTokenUtil.generateToken(user);
         updateUserToken(user.getId(), token);

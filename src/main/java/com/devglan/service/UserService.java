@@ -1,15 +1,15 @@
 package com.devglan.service;
 
-import com.devglan.model.user;
+import com.devglan.model.SqlEntity.User;
 
 import java.util.List;
 
 public interface UserService  {
 
-    user add(user user);
-    List<user> findAll();
+    User add(User user);
+    List<User> findAll();
     void delete(long id);
-    user findByUsername(String username);
-    user findById(Long id);
-    user update(user user);
+    User findByUsername(String username);
+    User findById(Long id);
+    User update(User user);
 }

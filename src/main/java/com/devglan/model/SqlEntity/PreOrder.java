@@ -1,4 +1,4 @@
- package com.devglan.model.product;
+ package com.devglan.model.SqlEntity;
 
 
 import javax.persistence.*;
@@ -6,14 +6,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "pre_order")
-public class pre_order {
+public class PreOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column
     private String buyer_id;
-
     @Column
     private String buyer_name;
     @Column

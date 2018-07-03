@@ -1,9 +1,9 @@
 package com.devglan.service.impl;
 
+import com.devglan.controller.exception.runtimeException.GeneralError;
 import com.devglan.controller.exception.runtimeException.ServerInternalError;
-import com.devglan.controller.exception.runtimeException.UserInputError;
 import com.devglan.dao.ProductDao;
-import com.devglan.model.product.product;
+import com.devglan.model.SqlEntity.Product;
 import com.devglan.service.ProductService;
 import com.devglan.untility.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,8 @@ public class ProductServiceImpl implements ProductService {
 
 
 
-    public List<product> findAll() {
-        List<product> list = new ArrayList<>();
+    public List<Product> findAll() {
+        List<Product> list = new ArrayList<>();
         productDao.findAll().iterator().forEachRemaining(list::add);
         return list;
     }
@@ -35,21 +35,21 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public product findById(Long id) {
+    public Product findById(Long id) {
         return productDao.findOne(id);
     }
 
     @Override
-    public product findByProductName(String productName) {
-//        return productDao.findByProductName(productName);
-        return null;
+    public Product findByProductName(String productName) {
+        System.out.print("findByProductName:    productName:"+productName);
+        return productDao.findByProductName(productName);
     }
 
 
     @Override
-    public product add(product product) {
+    public Product add(Product product) {
         if (isDuplicated(product)) {
-            throw new ServerInternalError("product id is duplicated " + product.getId());
+            throw new ServerInternalError("Product id is duplicated " + product.getId());
         }
         product.setCreate_time_stamp(TimeUtil.getCurrentTimeStamp());
         product.setUpdate_time_stamp(TimeUtil.getCurrentTimeStamp());
@@ -57,23 +57,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public product update(product product) {
+    public Product update(Product product) {
 
-        com.devglan.model.product.product productInstance = productDao.findById(product.getId());
+        Product productInstance = productDao.findById(product.getId());
         if (productInstance == null) {
-            throw new UserInputError("invalid productId");
+            throw new GeneralError("invalid productId");
         }
-        // check product id
+        // check Product id
         product.setUpdate_time_stamp(TimeUtil.getCurrentTimeStamp());
         return productDao.save(product);
     }
 
     @Override
-    public List<product> findByCategory(String cate) {
+    public List<Product> findByCategory(String cate) {
         return productDao.findByCategory(cate);
     }
 
-    private boolean isDuplicated(product product) {
+    private boolean isDuplicated(Product product) {
         return findById(product.getId()) != null;
     }
 }

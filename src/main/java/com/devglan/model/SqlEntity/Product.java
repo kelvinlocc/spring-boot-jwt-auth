@@ -1,4 +1,4 @@
-package com.devglan.model.product;
+package com.devglan.model.SqlEntity;
 
 
 
@@ -11,7 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Table( name = "product" )
-public class product {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
