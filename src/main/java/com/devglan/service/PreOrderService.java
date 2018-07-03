@@ -4,13 +4,13 @@ import com.devglan.model.SqlEntity.PreOrder;
 
 import java.util.List;
 
-public interface OrderService {
+public interface PreOrderService {
 
-    PreOrder add(PreOrder user);
+    PreOrder add(PreOrder preOrder);
     List<PreOrder> findAll();
     void delete(long id);
     PreOrder findById(Long id);
-    PreOrder update(PreOrder user);
+    PreOrder update(PreOrder preOrder);
     List<PreOrder> findByBuyerId(Long BuyerId);
     List<PreOrder> findByBuyerName(String buyerName);
     List<PreOrder> findByProductId(Long ProductId);

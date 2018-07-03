@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 
 @Entity
-@Table( name = "user_token" )
 public class UserToken {
 
     @Id

@@ -5,7 +5,6 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "pre_order")
 public class PreOrder {
 
     @Id
@@ -17,6 +16,8 @@ public class PreOrder {
     private String buyer_name;
     @Column
     private String create_timestamp;
+    @Column
+    private String last_update_timestamp;
     @Column
     private String status;
     @Column
@@ -57,7 +58,13 @@ public class PreOrder {
         this.id = id;
     }
 
+    public String getLast_update_timestamp() {
+        return last_update_timestamp;
+    }
 
+    public void setLast_update_timestamp(String last_update_timestamp) {
+        this.last_update_timestamp = last_update_timestamp;
+    }
 
     public String getCreate_timestamp() {
         return create_timestamp;

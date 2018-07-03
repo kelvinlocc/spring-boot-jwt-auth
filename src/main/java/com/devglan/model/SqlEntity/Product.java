@@ -10,7 +10,6 @@ import javax.persistence.*;
 
 
 @Entity
-@Table( name = "product" )
 public class Product {
 
     @Id
@@ -31,11 +30,11 @@ public class Product {
     @Column
     private long amount;
     @Column
-    private String create_time_stamp;
+    private String create_timestamp;
     @Column
-    private String update_time_stamp;
+    private String update_timestamp;
     @Column
-    private String offload_time_stamp;
+    private String offload_timestamp;
     @Column
     private Boolean is_on_sale;
     @Column
@@ -43,12 +42,12 @@ public class Product {
     @Column
     private String remark;
 
-    public String getUpdate_time_stamp() {
-        return update_time_stamp;
+    public String getUpdate_timestamp() {
+        return update_timestamp;
     }
 
-    public void setUpdate_time_stamp(String update_time_stamp) {
-        this.update_time_stamp = update_time_stamp;
+    public void setUpdate_timestamp(String update_timestamp) {
+        this.update_timestamp = update_timestamp;
     }
 
     public long getId() {
@@ -116,23 +115,23 @@ public class Product {
     }
 
 
-    @JsonProperty(value = "create_time_stamp")
-    public String getCreate_time_stamp() {
-        return create_time_stamp;
+    @JsonProperty(value = "create_timestamp")
+    public String getCreate_timestamp() {
+        return create_timestamp;
     }
 
     @JsonIgnore
-    @JsonProperty(value = "create_time_stamp")
-    public void setCreate_time_stamp(String create_time_stamp) {
-        this.create_time_stamp = create_time_stamp;
+    @JsonProperty(value = "create_timestamp")
+    public void setCreate_timestamp(String create_timestamp) {
+        this.create_timestamp = create_timestamp;
     }
 
-    public String getOffload_time_stamp() {
-        return offload_time_stamp;
+    public String getOffload_timestamp() {
+        return offload_timestamp;
     }
 
-    public void setOffload_time_stamp(String offload_time_stamp) {
-        this.offload_time_stamp = offload_time_stamp;
+    public void setOffload_timestamp(String offload_timestamp) {
+        this.offload_timestamp = offload_timestamp;
     }
 
     public Boolean getIs_on_sale() {

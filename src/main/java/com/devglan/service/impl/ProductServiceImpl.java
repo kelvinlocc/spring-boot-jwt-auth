@@ -1,5 +1,7 @@
 package com.devglan.service.impl;
 
+
+
 import com.devglan.controller.exception.runtimeException.GeneralError;
 import com.devglan.controller.exception.runtimeException.ServerInternalError;
 import com.devglan.dao.ProductDao;
@@ -51,8 +53,8 @@ public class ProductServiceImpl implements ProductService {
         if (isDuplicated(product)) {
             throw new ServerInternalError("Product id is duplicated " + product.getId());
         }
-        product.setCreate_time_stamp(TimeUtil.getCurrentTimeStamp());
-        product.setUpdate_time_stamp(TimeUtil.getCurrentTimeStamp());
+        product.setCreate_timestamp(TimeUtil.getCurrentTimeStamp());
+        product.setUpdate_timestamp(TimeUtil.getCurrentTimeStamp());
         return productDao.save(product);
     }
 
@@ -64,7 +66,7 @@ public class ProductServiceImpl implements ProductService {
             throw new GeneralError("invalid productId");
         }
         // check Product id
-        product.setUpdate_time_stamp(TimeUtil.getCurrentTimeStamp());
+        product.setUpdate_timestamp(TimeUtil.getCurrentTimeStamp());
         return productDao.save(product);
     }
 

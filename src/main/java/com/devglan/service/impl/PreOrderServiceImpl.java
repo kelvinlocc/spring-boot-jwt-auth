@@ -7,7 +7,7 @@ import com.devglan.dao.UserDao;
 import com.devglan.model.SqlEntity.PreOrder;
 import com.devglan.model.SqlEntity.Product;
 import com.devglan.model.SqlEntity.User;
-import com.devglan.service.OrderService;
+import com.devglan.service.PreOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ import java.util.List;
 
 
 @Service(value = "orderService")
-public class PreOrderServiceImpl implements OrderService {
+public class PreOrderServiceImpl implements PreOrderService {
 
     @Autowired
     private PreOrderDao orderDao;
@@ -50,12 +50,24 @@ public class PreOrderServiceImpl implements OrderService {
 
     @Override
     public PreOrder update(PreOrder preorder) {
-        PreOrder preorderInstance = findById(preorder.getId());
-        if (preorderInstance == null) {
-            throw new GeneralError("invalid preorder id");
+        PreOrder preOrderInstance = findById(preorder.getId());
+        if (preOrderInstance == null) {
+            throw new GeneralError("invalid pre-order id");
         }
-        preorder.setCreate_timestamp(preorderInstance.getCreate_timestamp());
+        preorder.setCreate_timestamp(preOrderInstance.getCreate_timestamp());
         return orderDao.save(preorder);
+    }
+
+
+
+    @Override
+    public List<PreOrder> findByBuyerId(Long buyerId) {
+        return orderDao.findByBuyerId(buyerId);
+    }
+
+    @Override
+    public List<PreOrder> findByProductId(Long ProductId) {
+        return orderDao.findByProductId(ProductId);
     }
 
     @Override
@@ -66,16 +78,6 @@ public class PreOrderServiceImpl implements OrderService {
         }
 
         return orderDao.findByBuyerId(userInstance.getId());
-    }
-
-    @Override
-    public List<PreOrder> findByBuyerId(Long buyerId) {
-        return orderDao.findByBuyerId(buyerId);
-    }
-
-    @Override
-    public List<PreOrder> findByProductId(Long ProductId) {
-        return orderDao.findByProductId(ProductId);
     }
 
     @Override

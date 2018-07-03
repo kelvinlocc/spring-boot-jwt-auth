@@ -35,8 +35,8 @@ public class ProductController {
         if (productInstance == null) {
             throw new GeneralError("Product id is invalid");
         }
-        product.setCreate_time_stamp(productInstance.getCreate_time_stamp());
-        product.setUpdate_time_stamp(TimeUtil.getCurrentTimeStamp());
+        product.setCreate_timestamp(productInstance.getCreate_timestamp());
+        product.setUpdate_timestamp(TimeUtil.getCurrentTimeStamp());
         return productService.update(product);
     }
 

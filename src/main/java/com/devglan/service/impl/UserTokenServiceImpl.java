@@ -10,12 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-@Service(value = "tokenService")
+@Service(value = "userTokenService")
 public class UserTokenServiceImpl implements UserTokenService {
 
     @Autowired
     private UserTokenDao tokenDao;
-
     @Autowired
     private UserDao userDao;
 

@@ -68,21 +68,16 @@ public class PublicController {
         if (user.getUsername().isEmpty()) {
             throw new GeneralError("invalid username");
         }
-
-
         User userFromServer = userService.findByUsername(user.getUsername());
         if (userFromServer == null) {
             throw new GeneralError("invalid username");
         }
-
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         user.getUsername(),
                         user.getPassword()
                 )
         );
-
-
         return userService.update(user);
     }
 }

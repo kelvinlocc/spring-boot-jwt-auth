@@ -11,5 +11,4 @@ public class GeneralError extends RuntimeException {
     public GeneralError(String exceptionMessage) {
         super(exceptionMessage);
     }
-
 }
